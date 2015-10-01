@@ -86,9 +86,7 @@ impl GlyphDrawer {
     pub fn draw(
         &mut self,
         text: &str,
-        size: Vec2<f32>,
         color: [f32;3],
-        center: bool,
         transform: Mat4<f32>,
         target: &mut glium::Frame,
         ) {
@@ -96,22 +94,17 @@ impl GlyphDrawer {
 
         for (i, c) in text.chars().enumerate() {
             if let Some(cache) = self.cache.get(&c) {
-                let mut offset_x = 0;
-                if center {
-                    offset_x = (width as i32 * cache.0.advance.0) / 2;
-                }
+                let offset_x = (width as i32 * cache.0.advance.0) / 2;
+                
                 let position = Vec2::new((i as f32 *
                                           cache.0.advance.0 as f32)
                                          - offset_x as f32,
                                          0.0);
-                let pix_off = Vec2::new(cache.0.pixel_offset.0 as f32,
-                                        cache.0.pixel_offset.1 as f32);
 
                 let img_size = Vec2::new(cache.0.image_size.0 as f32,
                                          cache.0.image_size.1 as f32);
                 
-                let position = position +
-                    (img_size * 0.5);
+                let position = position + (img_size * 0.5);
 
                 let translation = Iso3::new(
                     Vec3::new(position.x, position.y, 0.0),
@@ -122,7 +115,7 @@ impl GlyphDrawer {
                 
                 let uniforms = uniform! {
                     transform: *transform.as_array(),
-                    size: *(size * img_size).as_array(),
+                    size: *img_size.as_array(),
                     sample: &cache.1,
                     o_color: *Vec4::new(color[0],color[1],color[2],1.0).as_array(),
                 };

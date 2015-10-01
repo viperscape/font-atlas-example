@@ -51,9 +51,7 @@ fn main() {
         let mut target = display.draw();
         target.clear_color(0.5, 0.5, 0.5, 0.0); //clear as grey
         glyph.draw("Hello World",
-                   Vec2::new(1.0,1.0), //no resizing
                    [0.0,1.0,0.0], //overlay font color as green
-                   true,
                    transform,
                    &mut target);
         target.finish().unwrap();
