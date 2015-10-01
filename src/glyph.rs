@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 use std::char;
 
-use na::{Mat4,Vec2,Vec3,Iso3,Vec4, ToHomogeneous};
+use na::{Mat4,Vec2,Vec4,};
 
 use glium::{self,Surface,Display};
 use glium::vertex::VertexBufferAny;
@@ -12,6 +12,7 @@ use glium::texture::{Texture2d};
 
 use Font;
 use atlas::Atlas;
+use translation;
 
 static VERT_SRC: &'static str = r"
     #version 120
@@ -106,11 +107,8 @@ impl GlyphDrawer {
                 
                 let position = position + (img_size * 0.5);
 
-                let translation = Iso3::new(
-                    Vec3::new(position.x, position.y, 0.0),
-                    Vec3::new(0.0, 0.0, 0.0),
-                    );
-                let transform = transform * translation.to_homogeneous();
+                let translation = translation(position);
+                let transform = transform * translation;
                 
                 
                 let uniforms = uniform! {
