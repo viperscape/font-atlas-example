@@ -1,0 +1,12 @@
+[package]
+name = "font-atlas-example"
+version = "0.1.0"
+authors = ["viperscape <chrisfgill@gmail.com>"]
+
+[dependencies]
+nalgebra = "*"
+glutin = "*"
+glium = "*"
+font-atlas = "*"
+font-atlas-image = "0.1.0"
+image = "*"

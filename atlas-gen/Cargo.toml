@@ -1,0 +1,11 @@
+[package]
+name = "atlas_gen"
+version = "0.1.0"
+authors = ["TyOverby <ty@pre-alpha.com>","viperscape <chrisfgill@gmail.com>"]
+
+[dependencies]
+font-atlas = "0.1.0"
+font-atlas-freetype = "0.1.0"
+font-atlas-image = "0.1.0"
+freetype-rs = "*"
+image = "*"
