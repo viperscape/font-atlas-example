@@ -14,7 +14,7 @@ pub struct Atlas;
 impl Atlas {
     pub fn new (path: &str) -> Option<RenderedFont<DynamicImage>> {
         let atlas_img = format!("{}.png",path);
-        let atlas_meta = format!("{}.json",path);
+        let atlas_meta = format!("{}.bincode",path);
         
          if let Some(mut atlas_img) = File::open(atlas_img).ok() {
              if let Some(mut atlas_meta) = File::open(atlas_meta).ok() {

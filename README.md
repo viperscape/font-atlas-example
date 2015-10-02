@@ -16,13 +16,13 @@ This example generator was sourced from [TyOverby's example](https://github.com/
 
 ```bash
 cd ..
-./atlas-gen/target/debug/atlas_gen.exe assets/fonts/SourceCodePro-Regular.otf 20
+./atlas-gen/target/debug/atlas_gen assets/fonts/SourceCodePro-Regular.otf 20
 
 ls assets/fonts/
 SourceCodePro-Regular-20.json  SourceCodePro-Regular-20.png  SourceCodePro-Regular.otf
 ```
 
-You'll see that there is a png and json document representing the font in atlas format.
+You'll see that there is a png and bincode file representing the font in atlas format.
 Let's move on to building the render example (in the root of the project folder) to show our HelloWorld example on screen.
 
 ```bash

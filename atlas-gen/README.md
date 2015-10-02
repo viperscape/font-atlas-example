@@ -2,5 +2,5 @@ This example generator was sourced from [TyOverby's example](https://github.com/
 
 ```bash
 cargo build
-./target/debug/atlas_gen.exe fontfilepathhere fontsizehere
+./target/debug/atlas_gen fontfilepathhere fontsizehere
 ```

@@ -59,7 +59,7 @@ fn render_face(library: &freetype::Library, file: String, sizes: Vec<u32>)  {
                 Ok(rendered) => {
                     let name = file.split('.').nth(0).unwrap_or(&file[..]);
                     let img_path = format!("{}-{}.png", name, size);
-                    let meta_path = format!("{}-{}.json", name, size);
+                    let meta_path = format!("{}-{}.bincode", name, size);
                     image_atlas::save_atlas(rendered, image::ImageFormat::PNG, img_path, meta_path).ok().expect("Unable to save atlas");
                 }
                 Err(_) => panic!("Atlas unable to render"),
