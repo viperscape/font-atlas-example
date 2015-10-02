@@ -147,10 +147,7 @@ impl GlyphDrawer {
                     display: &Display) -> GlyphCache {
         let mut cache = HashMap::new();
 
-        for i in (0 .. 0xd7ff + 1)
-            .chain((0xe000 .. 0x10ffff + 1)) {
-            let c = char::from_u32(i).unwrap();
-            
+        for c in ascii().into_iter() {
             let g = Atlas::sample_tex(c,
                                       font,
                                       display);
@@ -164,4 +161,14 @@ impl GlyphDrawer {
     }
 }
 
+fn ascii() ->  Vec<char> {
+    let mut v = Vec::with_capacity(256);
+    for i in 0u8 .. 255 {
+        let c = i as char;
+        if !c.is_control() {
+            v.push(c);
+        }
+    }
+    v
+}
 
