@@ -19,7 +19,7 @@ cd ..
 ./atlas-gen/target/debug/atlas_gen assets/fonts/SourceCodePro-Regular.otf 20
 
 ls assets/fonts/
-SourceCodePro-Regular-20.json  SourceCodePro-Regular-20.png  SourceCodePro-Regular.otf
+SourceCodePro-Regular-20.bincode  SourceCodePro-Regular-20.png  SourceCodePro-Regular.otf
 ```
 
 You'll see that there is a png and bincode file representing the font in atlas format.
