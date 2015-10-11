@@ -14,7 +14,7 @@ use Font;
 use atlas::Atlas;
 use translation;
 
-static VERT_SRC: &'static str = r"
+static VERT_SRC_120: &'static str = r"
     #version 120
 
     attribute vec2 pos;
@@ -31,10 +31,40 @@ static VERT_SRC: &'static str = r"
     }
 ";
 
-static FRAG_SRC: &'static str = r"
+static VERT_SRC_140: &'static str = r"
+    #version 140
+
+    in vec2 pos;
+    in vec2 tex;
+
+    uniform mat4 transform;
+    uniform vec2 size;
+
+    out vec2 v_tex_coord;
+
+    void main() {
+        gl_Position = transform * vec4(pos * size, 0.0, 1.0);
+        v_tex_coord = tex;
+    }
+";
+
+static FRAG_SRC_120: &'static str = r"
     #version 120
 
     varying vec2 v_tex_coord;
+
+    uniform sampler2D sample;
+    uniform vec4 o_color;
+
+    void main() {
+        gl_FragColor = o_color * texture2D(sample, v_tex_coord);
+    }
+";
+
+static FRAG_SRC_140: &'static str = r"
+    #version 140
+
+    in vec2 v_tex_coord;
 
     uniform sampler2D sample;
     uniform vec4 o_color;
@@ -70,8 +100,10 @@ impl GlyphDrawer {
             ];
         
         let program = program!(window,
-                               120 => { vertex: VERT_SRC,
-                                        fragment: FRAG_SRC, } ).unwrap();
+                               140 => { vertex: VERT_SRC_140,
+                                        fragment: FRAG_SRC_140, },
+                               120 => { vertex: VERT_SRC_120,
+                                        fragment: FRAG_SRC_120, } ).unwrap();
         let vbo = glium::vertex::VertexBuffer::new(window, &verts).unwrap().into_vertex_buffer_any();
 
         let cache = GlyphDrawer::load_glyphs(&mut font, window);
