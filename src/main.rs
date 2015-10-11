@@ -1,4 +1,3 @@
-extern crate glutin;
 #[macro_use] extern crate glium;
 extern crate nalgebra as na;
 extern crate font_atlas;
@@ -10,6 +9,7 @@ pub use image::DynamicImage;
 pub type Font = RenderedFont<DynamicImage>;
 
 use glium::{DisplayBuild,Surface};
+use glium::glutin as glutin;
 
 use na::{Mat4,Vec2,Vec3,
          ToHomogeneous,
